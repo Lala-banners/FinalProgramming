@@ -303,6 +303,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2122821509641730924, guid: f88e2d4557197ab4190c1cbef5625bc4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.26
+      objectReference: {fileID: 0}
     - target: {fileID: 4728888536830253581, guid: f88e2d4557197ab4190c1cbef5625bc4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -365,25 +370,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f88e2d4557197ab4190c1cbef5625bc4, type: 3}
---- !u!1 &4728888535803830160 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4728888536830253582, guid: f88e2d4557197ab4190c1cbef5625bc4,
-    type: 3}
-  m_PrefabInstance: {fileID: 4728888535803830159}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4728888535803830161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4728888535803830160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eabf8a93bf19274c8a31ac58a6d5641, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerName: Bob
-  description: Some Description
-  speed: 1
-  cost: 0
