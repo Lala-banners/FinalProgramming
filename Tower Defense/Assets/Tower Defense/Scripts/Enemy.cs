@@ -30,8 +30,23 @@ public class Enemy : MonoBehaviour
     private float xp = 1;
     [SerializeField]
     private float money = 1;
-   
 
+    //Calls Damage method in Tower script
+    //Enemy knows Tower has killed it(1)
+    public void Damage(Tower _tower)
+    {
+        health -= _tower.Damage;
+        if (health <= 0)
+        {
+            Die(_tower);
+        }
+    }
+
+    //Enemy knows Tower has killed it(2)
+    private void Die(Tower _tower)
+    {
+        _tower.AddExperience(xp);
+    }
 
     // Start is called before the first frame update
     void Start()

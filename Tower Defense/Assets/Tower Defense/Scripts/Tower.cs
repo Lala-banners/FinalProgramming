@@ -45,7 +45,7 @@ public class Tower : MonoBehaviour
         }
     }
 
-    private float Damage
+    public float Damage
     {
         get
         {
@@ -95,22 +95,28 @@ public class Tower : MonoBehaviour
     private float experienceScaler = 1; //multiplied(*) by scaler when player levels up
 
     private int level = 1;
-    private int xp = 0;
-    private Enemy target = null; //target the Tower is attacking
-    
+    private float xp = 0;
+    //target the Tower is attacking
+    private Enemy target = null;
+    /* null (reference to objects) - means nothing.
+    * Objects take small amount of memory on a computer and when it's null there is nothing assigned to it (As if it doesn't exist).
+    * EG commented line of code.
+   */
+
+    private float currentTime = 0;
+
     #endregion
 
-#if UNITY_EDITOR //Only be availble if Unity is open (Not necessary for OnValidate and OnGizmos but good practice)
-    //OnValidate runs whenever a variable is changed within the Inspector of this class
-    private void OnValidate() 
+#if UNITY_EDITOR //Only availble if Unity is open (Not necessary for OnValidate and OnGizmos but good practice)
+     
+    private void OnValidate() //OnValidate runs whenever a variable is changed within the Inspector of this class
     {
         //Mathf = A collection of common math functions
         //Mathf.Clamp = Clamps the given value between the given minimum float and maximum float values. Returns the given value if it is within the min and max range
         maximumRange = Mathf.Clamp(maximumRange, minimumRange + 1, float.MaxValue); 
     }
-
-    //OnDrawGizmosSelected draws helpful visuals only when the object is selected. Gizmos are visual debugs we can draw eg sphere, cube, lines, rays, meshes
-    private void OnDrawGizmosSelected()
+    
+    private void OnDrawGizmosSelected() //OnDrawGizmosSelected draws helpful visuals only when the object is selected. Gizmos are visual debugs we can draw eg sphere, cube, lines, rays, meshes
     {
         //Draw a mostly transparent red sphere indicating the minmum range
         Gizmos.color = new Color(1, 0, 0, 0.25f);
@@ -119,8 +125,50 @@ public class Tower : MonoBehaviour
         //Draw a mostly transparent blue sphere indicating the maximum range
         Gizmos.color = new Color(0, 0, 1, 0.25f);
         Gizmos.DrawSphere(transform.position, maximumRange);
-    }
+    } 
 #endif
+
+    //_ differentiates between variable and parameters = problems
+    public void AddExperience(float _xp)
+    {
+        xp += _xp;
+        if (level < maxLevel)
+        {
+            if(xp >= RequiredXP)
+            {
+                LevelUp();
+            }   
+        }
+    }
+
+
+    public void LevelUp()
+    {
+        level++; //Add 1 to the level
+        xp = 0;
+    }
+
+    //Fire() is only handling firing NOT detecting if it fires
+    public void Fire()
+    {
+        //Get used to this if() - use it lots
+        if (target != null)
+        {
+            //(this) object
+            target.Damage(this);
+
+            // Render attack visuals
+        }
+    }
+
+   
+    private void FireWhenReady()
+    {
+        if (target != null)
+        {
+
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
